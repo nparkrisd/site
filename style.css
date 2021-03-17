@@ -1,0 +1,240 @@
+@font-face {
+  font-family: ArialNarrow;
+  src: url(https://cdn.glitch.com/8efdef4b-1039-4425-a778-75aadcafbd8d%2Farial%20narrow.woff?v=1615750199061);
+}
+
+@font-face {
+  font-family: ArialNarrow;
+  src: url(https://cdn.glitch.com/8efdef4b-1039-4425-a778-75aadcafbd8d%2FArial%20Narrow%20Bold.woff?v=1615744753305);
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: ArialNarrow;
+  src: url(https://cdn.glitch.com/8efdef4b-1039-4425-a778-75aadcafbd8d%2FArial%20Narrow%20Italic.woff?v=1615744754878);
+  font-style: italic;
+}
+
+body, html {
+  background-color: black;
+  font-family: ArialNarrow, sans-serif;
+  font-weight: 400;
+  margin: 0;
+  cursor: crosshair;
+}
+
+.horizontal-logo-container, .subtitle-container, .dot-container, .stacked-logo-container, .background-color-container, .nav-bar-contianer, .tape-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+.subtitle-container, .dot-container, .stacked-logo-container, .background-color-container, .tape-container{
+  margin-top: -100vh;
+}
+
+.nav-text {
+  font-size: 1.5em;
+  margin: 0;
+  margin-top: 5%;
+}
+
+.landing-page-wrapper {
+  width: 100vw;
+  position: fixed;
+}
+
+#location {
+  width: 26%;
+  margin: auto;
+  margin-bottom: 2%;
+  margin-left: 2%;
+  text-align: center;
+}
+
+#seniorshow {
+  width: 19%;
+  margin: auto;
+  margin-bottom: 2%;
+  margin-right: 2%;
+  text-align: center;
+}
+
+#horizontal-logo {
+  width: 80%;
+  margin: 5px;
+  margin-bottom: 25px;
+  text-align: center;
+  animation-name: subtle-rotation;
+  animation-iteration-count: infinite;
+  animation-duration: 15s;
+  animation-timing-function: ease;
+  animation-delay: 1s;
+}
+
+@keyframes subtle-rotation {
+  0% {transform: rotate(-2deg);}
+  25% {transform: rotate(-1deg);}
+  75% {transform: rotate(2deg);}
+  100% {transform: rotate(-2deg);}
+  
+}
+
+#nav-bar {
+  width: calc(986px / 1.5);
+  height: calc(71px / 1.5);
+  margin: auto;
+  margin-top: 20px;
+  background-image: url("https://cdn.glitch.com/8efdef4b-1039-4425-a778-75aadcafbd8d%2Fwebtapestraight.png?v=1615746265709");
+  background-position : center center;
+  background-repeat: no-repeat;
+  background-size: calc(986px / 1.5) calc(71px / 1.5);
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.nav-dot {
+  margin: auto;
+  margin-top: 35px;
+  width: 20px;
+  transition: all .25s ease;
+}
+
+.nav-dot:nth-of-type(2), .nav-dot:nth-of-type(3) {
+  margin-top: calc(-100vh + 35px);
+}
+
+a:link, a:visited  {
+  text-decoration: none;
+  color: black;
+}
+
+.curatorial-statement {
+  display: block;
+  width: 50vw;
+  margin: 0 auto;
+  margin-top: 9%;
+}
+
+.curatorial-statement p {
+  font-size: 1.5em;
+  color: white;
+  margin: .5em;}
+
+.list-names {
+  display: block;
+  width: 50vw;
+  margin: auto;
+   margin-top: 9%;
+    font-size: 3em;
+  color: white;
+
+}
+
+.list-names a {
+  color: white;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul > li {
+  display: inline-block;
+}
+
+.fake-scroll-wrapper {
+  overflow-y: auto;
+  overflow-x: hidden;
+  
+}
+.fake-scroll-block {
+  height: calc(var(--vh, 1vh) * 100);
+  width: 100vw;
+}
+
+html{
+	overflow-y:auto;
+	-ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+#stacked-logo-a {
+  margin: auto;
+  width: 15%;
+  margin-top: 1%;
+  margin-left: 1%;
+  text-align: center;
+}
+
+#stacked-logo {
+  width: 100%;
+  transform: translate(-100vw, 0);
+  animation: stackedlogotranslateright .45s linear infinite;
+  animation-play-state: paused;
+  animation-delay: calc(var(--scroll) * -1s);
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+}
+
+#stacked-logo-a-static {
+  margin: auto;
+  width: 15%;
+  margin-top: 1%;
+  margin-left: 1%;
+  text-align: center;
+}
+
+#stacked-logo-static {
+  width: 100%;
+}
+
+@keyframes stackedlogotranslateright {
+  to {
+    transform: translate(0, 0);
+  }
+}
+
+.horizontal-logo-container {
+  animation: logotranslateleft .35s linear infinite;
+  animation-play-state: paused;
+  animation-delay: calc(var(--scroll) * -1s);
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+}
+
+@keyframes logotranslateleft {
+  to {
+    transform: translate(-100vw,0);
+  }
+}
+
+#background-color {
+  width: 0%;
+  margin: 5px;
+  opacity: 0%;
+  filter: blur(100px);
+  text-align: center;
+  animation: bgcolorexpand .45s linear infinite;
+  animation-play-state: paused;
+  animation-delay: calc(var(--scroll) * -1s);
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+}
+
+@keyframes bgcolorexpand {
+  to {
+    width: 95%;
+    opacity: 100%;
+    filter: blur(0px);
+  }
+}
+
