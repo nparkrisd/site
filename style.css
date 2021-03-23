@@ -23,7 +23,60 @@ body, html {
   cursor: crosshair;
 }
 
-.horizontal-logo-container, .subtitle-container, .dot-container, .stacked-logo-container, .background-color-container, .nav-bar-contianer, .tape-container {
+.slide-wrapper {
+        display: grid;
+        margin: auto;
+        height: calc(var(--vh, 1vh) * 100);
+        text-align: center;
+        grid-template-columns: auto 1fr auto;
+      }
+      
+.photos {
+  margin: auto;
+  height: 60vh;
+}
+
+.next, .prev {
+  margin: auto;
+  cursor: pointer;
+}
+
+.next_hidden, .prev_hidden {
+  margin: auto;
+  opacity: 0%;
+}
+
+.prev {
+  transform: rotate(180deg);
+  margin-left: 25px;
+}
+
+.next {
+  margin-right: 25px;
+}
+
+.next > img, .prev > img {
+  width: 40%;
+}
+        
+.names-1 {
+  font-size: 1.5vw;
+  color: white;
+  margin: auto;
+  margin-bottom: 1%;
+  margin-left: 1%;
+  display: block;
+}
+        
+#stacked-logo-a-static-1 {
+    margin: auto;
+    width: 0%;
+    margin-top: 1%;
+    margin-left: 1%;
+    text-align: center;
+}
+
+.horizontal-logo-container, .subtitle-container, .dot-container, .stacked-logo-container, .background-color-container, .nav-bar-contianer, .tape-container, .names-popup-container  {
   display: flex;
   flex-direction: column;
   justify-content: center; 
@@ -31,13 +84,60 @@ body, html {
   height: calc(var(--vh, 1vh) * 100);
 }
 
-.subtitle-container, .dot-container, .stacked-logo-container, .background-color-container, .tape-container{
+.subtitle-container, .dot-container, .stacked-logo-container, .background-color-container, .tape-container, .names-popup-container{
   margin-top: -100vh;
+}
+
+.thumb {
+  display: none;
+  position: absolute;
+  width: 60vh;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  
+}
+
+.thumb-container {
+  position: fixed;
+  width: 100vw;
+  height: calc(var(--vh, 1vh) * 100);
+  top: 0;
+  z-index: -2;
+}
+
+#lpscroll {;
+  animation: lps 0.05s linear infinite;
+  animation-play-state: paused;
+  animation-delay: calc(var(--scroll) * -1s);
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+}
+
+@keyframes lps {
+  to {
+      top: -150px;
+    }
+  }
+
+.names {
+  font-size: 4.3vw;
+  color: white;
+  margin: auto;
+  margin-bottom: 1%;
+  margin-left: 2%;
+  display: none;
+}
+
+.names a {
+  color:white;
 }
 
 .nav-text {
   font-size: 1.5em;
-  margin: 0;
+  margin-left: -2%;
   margin-top: 5%;
 }
 
@@ -107,9 +207,13 @@ body, html {
   margin-top: calc(-100vh + 35px);
 }
 
-a:link, a:visited  {
+.nav-text>a:link, a:visited  {
   text-decoration: none;
   color: black;
+}
+
+a:link {
+  text-decoration: none;
 }
 
 .curatorial-statement {
@@ -126,12 +230,12 @@ a:link, a:visited  {
 
 .list-names {
   display: block;
-  width: 50vw;
+  width: 55vw;
   margin: auto;
-   margin-top: 9%;
+   padding-top: 3%;
+  margin-top:5%;
     font-size: 3em;
   color: white;
-
 }
 
 .list-names a {
@@ -148,6 +252,14 @@ ul > li {
   display: inline-block;
 }
 
+.name-dot {
+  display: none;
+  width: .45em;
+  height: .45em;
+  margin: 0 5px 5px 2px;
+  transition: all .25s ease;
+}
+
 .fake-scroll-wrapper {
   overflow-y: auto;
   overflow-x: hidden;
@@ -161,6 +273,7 @@ ul > li {
 html{
 	overflow-y:auto;
 	-ms-overflow-style: none;
+  croll-behavior: smooth; 
 }
 
 html::-webkit-scrollbar {
@@ -178,7 +291,7 @@ html::-webkit-scrollbar {
 #stacked-logo {
   width: 100%;
   transform: translate(-100vw, 0);
-  animation: stackedlogotranslateright .45s linear infinite;
+  animation: stackedlogotranslateright 0.05s linear infinite;
   animation-play-state: paused;
   animation-delay: calc(var(--scroll) * -1s);
   animation-iteration-count: 1;
@@ -204,7 +317,7 @@ html::-webkit-scrollbar {
 }
 
 .horizontal-logo-container {
-  animation: logotranslateleft .35s linear infinite;
+  animation: logotranslateleft .10s linear infinite;
   animation-play-state: paused;
   animation-delay: calc(var(--scroll) * -1s);
   animation-iteration-count: 1;
@@ -223,7 +336,7 @@ html::-webkit-scrollbar {
   opacity: 0%;
   filter: blur(100px);
   text-align: center;
-  animation: bgcolorexpand .45s linear infinite;
+  animation: bgcolorexpand .05s linear infinite;
   animation-play-state: paused;
   animation-delay: calc(var(--scroll) * -1s);
   animation-iteration-count: 1;
@@ -238,3 +351,147 @@ html::-webkit-scrollbar {
   }
 }
 
+.tape-piece {
+  position: absolute;
+}
+
+
+.tape-container {
+  transform: scale(1) translate(100%, 0px);
+  animation: movetape 1s linear infinite;
+  animation-play-state: paused;
+  animation-delay: calc(var(--scroll) * -1s);
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+}
+
+@keyframes movetape {
+  to {
+    transform: scale(1) translate(-14700px, 0px);
+  }
+}
+
+.tape-piece {
+  cursor: pointer;
+}
+
+.tape-container:hover > img:hover {
+  filter: invert(1);
+}
+
+#seniorshow {
+  animation: seniorshow 0.05s linear infinite;
+  animation-play-state: paused;
+  animation-delay: calc(var(--scroll) * -1s);
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+}
+#location {
+  animation: location 0.05s linear infinite;
+  animation-play-state: paused;
+  animation-delay: calc(var(--scroll) * -1s);
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+}
+
+@keyframes seniorshow {
+  to {
+    margin-bottom: -15%;
+  }
+}
+
+@keyframes location {
+  to {
+    margin-bottom: -10%;
+  }
+}
+
+
+
+
+/*-------------------------MEDIA QUERIES-----------------------*/
+
+@media only screen and (max-height: 970px) {
+  .tape-container {
+      transform: scale(0.95) translate(100%, 0px);
+      animation: movetape 1s linear infinite;
+      animation-play-state: paused;
+      animation-delay: calc(var(--scroll) * -1s);
+      animation-iteration-count: 1;
+      animation-fill-mode: both;
+  }
+
+  @keyframes movetape {
+    to {
+      transform: scale(0.95) translate(-14700px, 0px);
+    }
+  }
+}
+
+@media only screen and (max-height: 910px) {
+  .tape-container {
+      transform: scale(0.85) translate(100%, 0px);
+      animation: movetape 1s linear infinite;
+      animation-play-state: paused;
+      animation-delay: calc(var(--scroll) * -1s);
+      animation-iteration-count: 1;
+      animation-fill-mode: both;
+  }
+
+  @keyframes movetape {
+    to {
+      transform: scale(0.85) translate(-14700px, 0px);
+    }
+  }
+}
+
+@media only screen and (max-height: 870px) {
+  .tape-container {
+      transform: scale(0.75) translate(150%, 0px);
+      animation: movetape 1s linear infinite;
+      animation-play-state: paused;
+      animation-delay: calc(var(--scroll) * -1s);
+      animation-iteration-count: 1;
+      animation-fill-mode: both;
+  }
+
+  @keyframes movetape {
+    to {
+      transform: scale(0.75) translate(-14700px, 0px);
+    }
+  }
+}
+
+@media only screen and (max-height: 820px) {
+    .tape-container {
+      transform: scale(0.7) translate(100%, 0px);
+      animation: movetape 1s linear infinite;
+      animation-play-state: paused;
+      animation-delay: calc(var(--scroll) * -1s);
+      animation-iteration-count: 1;
+      animation-fill-mode: both;
+  }
+
+  @keyframes movetape {
+    to {
+      transform: scale(0.7) translate(-14700px, 0px);
+    }
+  }
+}
+
+@media only screen and (max-height: 770px) {
+  .tape-container {
+      transform: scale(0.65) translate(100%, 0px);
+      animation: movetape 1s linear infinite;
+      animation-play-state: paused;
+      animation-delay: calc(var(--scroll) * -1s);
+      animation-iteration-count: 1;
+      animation-fill-mode: both;
+  }
+
+  @keyframes movetape {
+    to {
+      transform: scale(0.65) translate(-14700px, 0px);
+    }
+  }
+}
